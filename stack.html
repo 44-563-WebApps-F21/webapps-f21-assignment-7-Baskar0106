@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Stack
+	</title>
+	<style>
+        .flex-container {
+          display: flex;  flex-direction:row;
+          background-color: red;
+      }
+    
+    .flex-container > div {  /*div children of the flex container*/
+      background-color: #f1f1f1; 
+      margin: 10px;  padding: 20px;  font-size: 30px;
+    }
+    
+    /* Responsive layout */
+    @media (max-width: 600px) { 
+         .flex-container{
+             flex-direction:column;
+             background-color: green;
+          }
+        }
+    </style>
+	<script>
+
+	</script>
+</head>
+<body>
+	<h1>Bhaskar Venkata Prudhvi Bobbala builds a stack</h1>
+	<div>
+
+	</div>
+	<div class="flex-container" id="target">	
+	</div>
+
+	<p> Press the button to create an new element of type div and then add it to the container.
+	</p>
+	<div class="input-div">
+		<input id="input" type="text" />
+		<button class="pushbtn" onclick="makeNewDiv()">Push value</button>
+		<button class="popbtn" onclick="popItem()">Pop</button>
+		<button class="zapbtn" onclick="Zapvalues()">Zap values</button>
+	</div>
+</body>
+<script>
+	function makeNewDiv() {
+		/* make the div and its text */
+		let data = document.getElementById("input").value;
+		let element = document.createElement("div")
+		element.innerHTML = data
+		element.className = "stack"
+
+		/* add it to the container */
+		document.getElementById('target').appendChild(element)
+	}
+	function popItem() {
+		let stackItems = document.getElementsByClassName('stack');
+		if (stackItems != undefined && stackItems.length > 0) {
+			stackItems[stackItems.length - 1].remove();
+		}
+	}
+	function Zapvalues() {
+		let data = document.getElementById("input").value;
+		let stackItems = document.getElementsByClassName('stack');
+
+		if (stackItems != undefined && stackItems.length > 0) {
+			let stacksLength = stackItems.length;
+			for (let index = 0; index < stackItems.length; index++) {
+				let element = stackItems[index].innerHTML;
+				if (element == data) {
+					console.log(stackItems[index])
+					stackItems[index].remove();
+					index--;
+				}
+			}
+		}
+	}
+</script>
+</html>
